@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Rooms</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Rooms</h1>
+        <ul class="navigation">
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
+        <div class="card">
+            <h2>List of Rooms</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Room Number</th>
+                        <th>Type</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Standard Rooms -->
+                    <tr>
+                        <td>101</td>
+                        <td>101A</td>
+                        <td>Standard</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>102</td>
+                        <td>102B</td>
+                        <td>Standard</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>103</td>
+                        <td>103C</td>
+                        <td>Standard</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>104</td>
+                        <td>104D</td>
+                        <td>Standard</td>
+                        <td>$100</td>
+                    </tr>
+                    <tr>
+                        <td>105</td>
+                        <td>105E</td>
+                        <td>Standard</td>
+                        <td>$100</td>
+                    </tr>
+                    <!-- Deluxe Rooms -->
+                    <tr>
+                        <td>201</td>
+                        <td>201A</td>
+                        <td>Deluxe</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>202</td>
+                        <td>202B</td>
+                        <td>Deluxe</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>203</td>
+                        <td>203C</td>
+                        <td>Deluxe</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>204</td>
+                        <td>204D</td>
+                        <td>Deluxe</td>
+                        <td>$150</td>
+                    </tr>
+                    <tr>
+                        <td>205</td>
+                        <td>205E</td>
+                        <td>Deluxe</td>
+                        <td>$150</td>
+                    </tr>
+                    <!-- Suite Rooms -->
+                    <tr>
+                        <td>301</td>
+                        <td>301A</td>
+                        <td>Suite</td>
+                        <td>$200</td>
+                    </tr>
+                    <tr>
+                        <td>302</td>
+                        <td>302B</td>
+                        <td>Suite</td>
+                        <td>$200</td>
+                    </tr>
+                    <!-- Add more rooms as needed -->
+                </tbody>
+            </table>
+            <a href="#" class="btn" onclick="toggleAddRoomForm()">Add Room</a>
+            <!-- Add Room Form -->
+            <div class="add-room-form" id="addRoomForm">
+                <h2>Add Room</h2>
+                <form onsubmit="addRoom(event)">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="type">Type:</label>
+                    <select id="type" name="type" required>
+                        <option value="Standard">Standard</option>
+                        <option value="Deluxe">Deluxe</option>
+                        <!-- Add more options for other types -->
+                    </select>
+                    <label for="price">Price:</label>
+                    <input type="text" id="price" name="price" required>
+                    <input type="submit" value="Add" class="btn">
+                    <input type="button" value="Cancel" class="btn btn-cancel" onclick="toggleAddRoomForm()">
+                </form>
+            </div>
+            <!-- End Add Room Form -->
+        </div>
+    </div>
+
+    <script>
+        function toggleAddRoomForm() {
+            var form = document.getElementById('addRoomForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addRoom(event) {
+            event.preventDefault();
+            var table = document.getElementById('roomTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${table.rows.length}</td>
+                <td>${document.getElementById('name').value}</td>
+                <td>${document.getElementById('type').value}</td>
+                <td>${document.getElementById('price').value}</td>
+            `;
+            // Clear form fields after adding room
+            document.getElementById('name').value = '';
+            document.getElementById('type').selectedIndex = 0; // Reset dropdown
+            document.getElementById('price').value = '';
+            // Hide the form after adding room
+            toggleAddRoomForm();
+        }
+    </script>
+</body>
+</html>

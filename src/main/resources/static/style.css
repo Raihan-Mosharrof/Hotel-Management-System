@@ -1,0 +1,114 @@
+/* Resetting default margins and paddings */
+body, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Setting up some basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #ffe4b5; /* Vivid color background (Light Apricot) */
+    color: #333;
+    animation-name: changeBackgroundColor; /* Specify the name of the animation */
+    animation-duration: 20s; /* Longer duration */
+    animation-iteration-count: infinite; /* Loop the animation infinitely */
+}
+
+.container {
+    max-width: 1200px;
+    margin: 50px auto; /* Added margin to move the content down */
+    padding: 20px;
+    background-color: #fff; /* White background */
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+    color: #333;
+}
+
+.navigation {
+    list-style-type: none;
+    padding: 10px 0;
+    background-color: #333; /* Dark background */
+    border-radius: 10px;
+}
+
+.navigation li {
+    display: inline;
+    margin-right: 20px;
+}
+
+.navigation li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.navigation li a:hover {
+    background-color: #555; /* Darker background on hover */
+}
+
+.card {
+    background-color: #f0f0f0; /* Light gray background */
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #333; /* Dark button color */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #555; /* Darker button color on hover */
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.table th, .table td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.table th {
+    background-color: #333; /* Dark header background */
+    color: #fff;
+}
+
+.table tr:hover {
+    background-color: #f5f5f5; /* Light gray background on hover */
+}
+
+/* Background animation effects */
+@keyframes colorChange {
+    0% { background-color: #ff6b6b; }
+    50% { background-color: #556270; }
+    100% { background-color: #4ecdc4; }
+}
+
+body {
+    background-color: #ff6b6b; /* Initial background color */
+    animation: colorChange 15s infinite; /* Continuous background color change animation */
+}

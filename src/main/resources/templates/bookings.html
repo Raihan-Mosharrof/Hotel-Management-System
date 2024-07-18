@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bookings</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        /* Additional CSS for the form */
+        .add-booking-form {
+            display: none; /* Initially hide the form */
+            margin-top: 20px;
+        }
+
+        .add-booking-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .add-booking-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-booking-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-booking-form .btn-cancel {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Bookings</h1>
+        <ul class="navigation">
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
+        <div class="card">
+            <h2>List of Bookings</h2>
+            <table class="table" id="bookingTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Customer ID</th>
+                        <th>Room ID</th>
+                        <th>Start Date</th>
+                        <th>End Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example data -->
+                    <tr>
+                        <td>1</td>
+                        <td>1</td>
+                        <td>101</td>
+                        <td>2024-04-01</td>
+                        <td>2024-04-03</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>2</td>
+                        <td>102</td>
+                        <td>2024-04-02</td>
+                        <td>2024-04-05</td>
+                    </tr>
+                    <!-- Add more rows for other bookings -->
+                </tbody>
+            </table>
+            <a href="#" class="btn" id="addBookingBtn" onclick="toggleAddBookingForm()">Add Booking</a>
+            <!-- Add Booking Form -->
+            <div class="add-booking-form" id="addBookingForm">
+                <h2>Add Booking</h2>
+                <form onsubmit="addBooking(event)">
+                    <label for="customerId">Customer ID:</label>
+                    <input type="text" id="customerId" name="customerId" required>
+                    <label for="roomId">Room ID:</label>
+                    <input type="text" id="roomId" name="roomId" required>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" name="startDate" required>
+                    <label for="endDate">End Date:</label>
+                    <input type="date" id="endDate" name="endDate" required>
+                    <input type="submit" value="Add" class="btn">
+                    <input type="button" value="Cancel" class="btn btn-cancel" onclick="toggleAddBookingForm()">
+                </form>
+            </div>
+            <!-- End Add Booking Form -->
+        </div>
+    </div>
+
+    <script>
+        function toggleAddBookingForm() {
+            var form = document.getElementById('addBookingForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addBooking(event) {
+            event.preventDefault();
+            var table = document.getElementById('bookingTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${table.rows.length + 1}</td>
+                <td>${document.getElementById('customerId').value}</td>
+                <td>${document.getElementById('roomId').value}</td>
+                <td>${document.getElementById('startDate').value}</td>
+                <td>${document.getElementById('endDate').value}</td>
+            `;
+            // Clear form fields after adding booking
+            document.getElementById('customerId').value = '';
+            document.getElementById('roomId').value = '';
+            document.getElementById('startDate').value = '';
+            document.getElementById('endDate').value = '';
+            // Hide the form after adding booking
+            toggleAddBookingForm();
+        }
+    </script>
+</body>
+</html>

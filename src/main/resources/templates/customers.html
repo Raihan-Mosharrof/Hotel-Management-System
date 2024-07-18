@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Customers</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        /* Additional CSS for the form */
+        .add-customer-form {
+            display: none; /* Initially hide the form */
+            margin-top: 20px;
+        }
+
+        .add-customer-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .add-customer-form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-customer-form .btn-cancel {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Customers</h1>
+        <ul class="navigation">
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+            <li><a href="services.html">Services</a></li>
+        </ul>
+        <div class="card">
+            <h2>List of Customers</h2>
+            <table class="table" id="customerTable">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Phone Number</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example data -->
+                    <tr>
+                        <td>1</td>
+                        <td>John Doe</td>
+                        <td>1234567890</td>
+                        <td>john@example.com</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Jane Smith</td>
+                        <td>9876543210</td>
+                        <td>jane@example.com</td>
+                    </tr>
+                    <!-- Add more rows for other customers -->
+                </tbody>
+            </table>
+            <a href="#" class="btn" onclick="toggleAddCustomerForm()">Add Customer</a>
+            <!-- Add Customer Form -->
+            <div class="add-customer-form">
+                <h2>Add Customer</h2>
+                <form onsubmit="addCustomer(event)">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                    <label for="phoneNumber">Phone Number:</label>
+                    <input type="text" id="phoneNumber" name="phoneNumber" required>
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                    <input type="submit" value="Add" class="btn">
+                    <input type="button" value="Cancel" class="btn btn-cancel" onclick="toggleAddCustomerForm()">
+                </form>
+            </div>
+            <!-- End Add Customer Form -->
+        </div>
+    </div>
+
+    <script>
+        function toggleAddCustomerForm() {
+            var form = document.querySelector('.add-customer-form');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addCustomer(event) {
+            event.preventDefault();
+            var table = document.getElementById('customerTable').getElementsByTagName('tbody')[0];
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${table.rows.length}</td>
+                <td>${document.getElementById('name').value}</td>
+                <td>${document.getElementById('phoneNumber').value}</td>
+                <td>${document.getElementById('email').value}</td>
+            `;
+            // Clear form fields after adding customer
+            document.getElementById('name').value = '';
+            document.getElementById('phoneNumber').value = '';
+            document.getElementById('email').value = '';
+            // Hide the form after adding customer
+            toggleAddCustomerForm();
+        }
+    </script>
+</body>
+</html>

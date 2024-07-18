@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Services</title>
+    <link rel="stylesheet" href="../static/style.css">
+    <style>
+        /* Additional CSS for the form */
+        .add-service-form {
+            display: none; /* Initially hide the form */
+            margin-top: 20px;
+        }
+
+        .add-service-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .add-service-form input, .add-service-form textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .add-service-form .btn-cancel {
+            background-color: #aaa;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Services</h1>
+        <ul class="navigation">
+            <li><a href="customers.html">Customers</a></li>
+            <li><a href="rooms.html">Rooms</a></li>
+            <li><a href="bookings.html">Bookings</a></li>
+        </ul>
+        <div class="card">
+            <h2>List of Provided Services</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Room Cleaning</td>
+                        <td>Our professional cleaning staff will ensure your room is spotless and sanitized before your arrival.</td>
+                        <td>$20</td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Food Service</td>
+                        <td>Indulge in our delicious in-room dining options. Our chefs prepare a variety of dishes to suit your taste.</td>
+                        <td>$30</td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Spa and Wellness</td>
+                        <td>Relax and rejuvenate with our spa treatments. Choose from massages, facials, and more to unwind during your stay.</td>
+                        <td>$50</td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td>Airport Transfer</td>
+                        <td>Travel hassle-free with our airport transfer service. Our drivers will ensure you reach your destination safely and comfortably.</td>
+                        <td>$40</td>
+                    </tr>
+                    <!-- Add more rows for other services -->
+                </tbody>
+            </table>
+            <a href="#" class="btn" id="addServiceBtn" onclick="toggleAddServiceForm()">Add Service</a>
+            <!-- Add Service Form -->
+            <div class="add-service-form" id="addServiceForm">
+                <h2>Add Service</h2>
+                <form onsubmit="addService(event)">
+                    <label for="serviceName">Service Name:</label>
+                    <input type="text" id="serviceName" name="serviceName" required>
+                    <label for="serviceDescription">Description:</label>
+                    <textarea id="serviceDescription" name="serviceDescription" rows="4" required></textarea>
+                    <label for="servicePrice">Price:</label>
+                    <input type="text" id="servicePrice" name="servicePrice" required>
+                    <input type="submit" value="Add" class="btn">
+                    <input type="button" value="Cancel" class="btn btn-cancel" onclick="toggleAddServiceForm()">
+                </form>
+            </div>
+            <!-- End Add Service Form -->
+        </div>
+    </div>
+
+    <script>
+        function toggleAddServiceForm() {
+            var form = document.getElementById('addServiceForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        }
+
+        function addService(event) {
+            event.preventDefault();
+            var table = document.querySelector('.table tbody');
+            var newRow = table.insertRow();
+            newRow.innerHTML = `
+                <td>${table.rows.length + 1}</td>
+                <td>${document.getElementById('serviceName').value}</td>
+                <td>${document.getElementById('serviceDescription').value}</td>
+                <td>$${document.getElementById('servicePrice').value}</td>
+            `;
+            // Clear form fields after adding service
+            document.getElementById('serviceName').value = '';
+            document.getElementById('serviceDescription').value = '';
+            document.getElementById('servicePrice').value = '';
+            // Hide the form after adding service
+            toggleAddServiceForm();
+        }
+    </script>
+</body>
+</html>
